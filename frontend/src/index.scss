@@ -1,7 +1,7 @@
 @mixin row{
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -11,7 +11,8 @@ html {
 }
 
 body {
-  font: 1.6rem Helvetica, Arial, sans-serif;
+  font-size: 1.6rem;
+  font-family: Helvetica, Arial, sans-serif;
   height: 100vh;
   margin: 0;
   -webkit-font-smoothing: antialiased;
@@ -37,7 +38,38 @@ a{
   }
 }
 
+ul{
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+li{
+  margin-top: 1rem;
+}
 
+button{
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 0.1rem #a4a4a4 solid;
+  font-size: 1.6rem;
+  font-family: Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: pointer;
+  background-color: #f8f8f8;
+
+  &.primary{
+    background-color: #f0c040;
+  }
+
+  &.block{
+    width: 100%;
+  }
+
+  &:hover{
+    border: 0.1rem #404040 solid;
+  }
+}
 .grid-container{
   display: grid;
   grid-template-areas: 
@@ -72,7 +104,22 @@ main{
   padding: 1rem;
   & > div {
       @include row;
+      justify-content: center;
   }
+}
+
+.row{
+  @include row;
+
+  &.top{
+    align-items: flex-start;
+  }
+}
+.col-1{
+  flex: 1 1 25rem;
+}
+.col-2{
+  flex: 2 1 50rem;
 }
 
 footer{
@@ -80,16 +127,23 @@ footer{
   background-color: #203040;
   color: #ffffff;
 
-  @include row;    
+  @include row; 
+  justify-content: center;   
 }
 
 img{
   border-radius: .5rem;
+
+  &.medium{
+    max-width: 29rem;
+    width:100%; 
+  }
+
+  &.large{
+    width: 100%;
+  }
 }
-img.medium{
-  max-width: 29rem;
-  width:100%; 
-}
+
 
 .card{
   border: .1rem #c0c0c0 solid;
@@ -100,7 +154,7 @@ img.medium{
   &-body{
       padding:1rem;
 
-      & >*{
+      & > *{
           margin-bottom: 0.5rem;
       }
   }
@@ -112,5 +166,16 @@ img.medium{
 .rating span{
   color: #f0c040;
   margin: 0.1rem;
+
+  &:last-child{
+    color:#404040;
+  }
 }
 
+.success{
+  color: #20a020;
+}
+
+.error{
+  color: #a02020;
+}

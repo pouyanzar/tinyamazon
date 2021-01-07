@@ -1,8 +1,11 @@
-import data from './data';
+import { BrowserRouter, Route } from 'react-router-dom'
+import ProductScreen from './screens/ProductScreen';
+import HomeScreen from './screens/HomeScreen';
 
 function App() {
   return (
-    <div className="grid-container">
+    <BrowserRouter>
+      <div className="grid-container">
             <header>
                 <div>
                     <a className="brand" href="/">
@@ -15,51 +18,15 @@ function App() {
                 </div>
             </header>
             <main className="main">
-                <div>
-                  {data.products.map(product => (
-                    <div 
-                      key={product._id}
-                      className="card">
-                        <a href={`/product/${product._id}`}>
-                            <img 
-                              className="medium" 
-                              src={product.image} 
-                              alt={product.name}/>
-                        </a>
-                        <div className="card-body">
-                            <a href={`/product/${product._id}`}>
-                                <h2>{product.name}</h2>
-                            </a>
-                            <div className="rating">
-                                <span>
-                                    <i className="fa fa-star"></i>
-                                </span>
-                                <span>
-                                    <i className="fa fa-star"></i>
-                                </span>
-                                <span>
-                                    <i className="fa fa-star"></i>
-                                </span>
-                                <span>
-                                    <i className="fa fa-star"></i>
-                                </span>
-                                <span>
-                                    <i className="fa fa-star"></i>
-                                </span>
-                            </div>
-                            <div className="price">
-                                ${product.price}
-                            </div>
-                        </div>
-                      </div>
-                  ))}
-                    
-                </div>
+              <Route path='/product/:id' component={ProductScreen}/>
+              <Route path='/' component={HomeScreen} exact />
             </main>
             <footer className="footer">
                 All right reserved.
             </footer>
         </div>
+    </BrowserRouter>
+    
   );
 }
 
